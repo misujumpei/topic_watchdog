@@ -17,7 +17,7 @@ jobs:
           rsync -av ./ /root/ros2_ws/src/topic_watchdog/
           cd /root/ros2_ws
           colcon build --packages-select topic_watchdog
-          source /root/ros2_ws/install/setup.bash
+          . /root/ros2_ws/install/setup.bash
           colcon test --packages-select topic_watchdog
           colcon test-result --verbose
 
