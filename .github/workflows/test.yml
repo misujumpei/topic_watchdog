@@ -1,25 +1,17 @@
-name: test
-
-on:
-  push:
-  pull_request:
-
-jobs:
-  test:
-    runs-on: ubuntu-22.04
-    container: ryuichiueda/ubuntu22.04-ros2:latest
-
-    defaults:
-      run:
-        shell: bash
-
-    steps:
-      - uses: actions/checkout@v4
-
       - name: build and test
         run: |
           rsync -av ./ /root/ros2_ws/src/topic_watchdog/
           cd /root/ros2_ws
+
+          # ROS 2 environment
+          . /opt/ros/humble/setup.bash
+
+          # Install dependencies for tests (ament_* linters etc.)
+          apt-get update
+          apt-get install -y python3-rosdep
+          rosdep update
+          rosdep install -i --from-paths src --rosdistro humble -y
+
           colcon build --packages-select topic_watchdog
           . /root/ros2_ws/install/setup.bash
 
