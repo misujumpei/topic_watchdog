@@ -6,6 +6,10 @@ on:
 
 jobs:
   test:
+    defaults:
+      run:
+        shell: bashjobs:
+  
     runs-on: ubuntu-22.04
     container: ryuichiueda/ubuntu22.04-ros2:latest
 
