@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 package_name = 'topic_watchdog'
 
-setup(
+isetup(
     name=package_name,
     version='0.0.0',
     packages=find_packages(exclude=['test']),
@@ -23,7 +23,9 @@ setup(
         ],
     },
     entry_points={
-        'console_scripts': [
-        ],
-    },
+    'console_scripts': [
+        'watchdog = topic_watchdog.watchdog:main',
+    ],
+},
+
 )
