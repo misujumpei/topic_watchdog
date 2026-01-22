@@ -22,6 +22,10 @@ jobs:
           cd /root/ros2_ws
           colcon build --packages-select topic_watchdog
           . /root/ros2_ws/install/setup.bash
+
+          set +e
           colcon test --packages-select topic_watchdog
+          rc=$?
           colcon test-result --verbose
+          exit $rc
 
